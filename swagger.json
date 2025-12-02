@@ -5,7 +5,7 @@
     "description": "This API was created by Team 16 to manage events.",
     "version": "1.0.0"
   },
-  "host": "cse341-team16.onrender.com",
+  "host": "cse341-team16.onrender.com/api-docs",
   "basePath": "/",
   "schemes": [
     "https"
@@ -415,6 +415,160 @@
         }
       }
     },
+    "/locations/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "stateOrProvince": {
+                  "example": "any"
+                },
+                "country": {
+                  "example": "any"
+                },
+                "recommendedFor": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/locations/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "stateOrProvince": {
+                  "example": "any"
+                },
+                "country": {
+                  "example": "any"
+                },
+                "recommendedFor": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/events/{eventId}/rsvps": {
       "get": {
         "tags": [
@@ -572,186 +726,6 @@
             "required": true,
             "type": "string"
           },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-        "/locations": {
-      "get": {
-        "tags": [
-          "Locations"
-        ],
-        "description": "Get all locations",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Locations"
-        ],
-        "description": "Create a new location",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "Calgary Ballroom"
-                },
-                "type": {
-                  "example": "hall"
-                },
-                "address": {
-                  "example": "100 Main Street SE"
-                },
-                "city": {
-                  "example": "Calgary"
-                },
-                "stateOrProvince": {
-                  "example": "AB"
-                },
-                "country": {
-                  "example": "Canada"
-                },
-                "recommendedFor": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "example": "wedding"
-                  }
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/locations/{id}": {
-      "get": {
-        "tags": [
-          "Locations"
-        ],
-        "description": "Get a single location by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Locations"
-        ],
-        "description": "Update a location by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "Calgary Ballroom"
-                },
-                "type": {
-                  "example": "hall"
-                },
-                "address": {
-                  "example": "100 Main Street SE"
-                },
-                "city": {
-                  "example": "Calgary"
-                },
-                "stateOrProvince": {
-                  "example": "AB"
-                },
-                "country": {
-                  "example": "Canada"
-                },
-                "recommendedFor": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "example": "wedding"
-                  }
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Locations"
-        ],
-        "description": "Delete a location by ID",
-        "parameters": [
           {
             "name": "id",
             "in": "path",

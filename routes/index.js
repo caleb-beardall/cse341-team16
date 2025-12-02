@@ -17,16 +17,14 @@ router.use('/events', require('./events'));
 
 // Organizations.. added for sergio...
 router.use('/organizations', require('./organizations'));
+
 // Locations
 router.use('/locations', require('./locations'));
-
-// Organizations
-// router.use('/organizations', require('./organizations'));
 
 // RSVPs
 router.use('/', require('./rsvps'));
 
 // Comments
-// router.use('/', require('./comments'));
+router.use('/', require('./comments'));
 
 module.exports = router;
