@@ -2,14 +2,20 @@
   "swagger": "2.0",
   "info": {
     "title": "Team 16's API",
-    "description": "This API was created by Team 16 to manage events.<br><br><a href='/auth/google'>🔐 Log In with Google</a><br><a href='/auth/logout'>🚪 Log Out</a>",
+    "description": "This API was created by Team 16 to manage events.",
     "version": "1.0.0"
   },
+  "host": "cse341-team16.onrender.com",
   "basePath": "/",
+  "schemes": [
+    "https"
+  ],
   "paths": {
     "/": {
       "get": {
-        "tags": ["comments"],
+        "tags": [
+          "comments"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -21,7 +27,9 @@
         }
       },
       "post": {
-        "tags": ["comments"],
+        "tags": [
+          "comments"
+        ],
         "description": "",
         "parameters": [
           {
@@ -58,7 +66,6 @@
     },
     "/api-docs": {
       "get": {
-        "tags": ["Meta"],
         "description": "",
         "responses": {
           "default": {
@@ -69,29 +76,6 @@
     },
     "/auth/google": {
       "get": {
-        "tags": ["Auth"],
-        "description": "<a href='/auth/google'>Click here to Log In with Google</a>",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/auth/logout": {
-      "get": {
-        "tags": ["Auth"],
-        "description": "<a href='/auth/logout'>🚪 Click here to Log Out</a>",
-        "responses": {
-          "200": {
-            "description": "Logged Out"
-          }
-        }
-      }
-    },
-    "/auth/google/callback": {
-      "get": {
-        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -100,9 +84,28 @@
         }
       }
     },
+    "/auth/google/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/auth/failure": {
       "get": {
-        "tags": ["Auth"],
         "description": "",
         "responses": {
           "200": {
@@ -113,7 +116,6 @@
     },
     "/auth/success": {
       "get": {
-        "tags": ["Auth"],
         "description": "",
         "responses": {
           "200": {
@@ -124,7 +126,9 @@
     },
     "/events/": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -136,7 +140,9 @@
         }
       },
       "post": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -176,13 +182,18 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
     },
     "/events/{id}": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -205,7 +216,9 @@
         }
       },
       "put": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -252,6 +265,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -261,7 +277,9 @@
         }
       },
       "delete": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -275,6 +293,9 @@
           "204": {
             "description": "No Content"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -286,7 +307,9 @@
     },
     "/organizations/": {
       "get": {
-        "tags": ["Organizations"],
+        "tags": [
+          "Organizations"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -298,7 +321,9 @@
         }
       },
       "post": {
-        "tags": ["Organizations"],
+        "tags": [
+          "Organizations"
+        ],
         "description": "",
         "parameters": [
           {
@@ -344,7 +369,9 @@
     },
     "/organizations/{id}": {
       "get": {
-        "tags": ["Organizations"],
+        "tags": [
+          "Organizations"
+        ],
         "description": "",
         "parameters": [
           {
@@ -367,7 +394,9 @@
         }
       },
       "put": {
-        "tags": ["Organizations"],
+        "tags": [
+          "Organizations"
+        ],
         "description": "",
         "parameters": [
           {
@@ -423,7 +452,9 @@
         }
       },
       "delete": {
-        "tags": ["Organizations"],
+        "tags": [
+          "Organizations"
+        ],
         "description": "",
         "parameters": [
           {
@@ -446,10 +477,9 @@
         }
       }
     },
-    "/locations": {
+    "/locations/": {
       "get": {
-        "tags": ["Locations"],
-        "description": "Get all locations",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -460,8 +490,7 @@
         }
       },
       "post": {
-        "tags": ["Locations"],
-        "description": "Protected: Create a new location (requires Google OAuth login via /auth/google).",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -470,29 +499,25 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "Calgary Ballroom"
+                  "example": "any"
                 },
                 "type": {
-                  "example": "hall"
+                  "example": "any"
                 },
                 "address": {
-                  "example": "100 Main Street SE"
+                  "example": "any"
                 },
                 "city": {
-                  "example": "Calgary"
+                  "example": "any"
                 },
                 "stateOrProvince": {
-                  "example": "AB"
+                  "example": "any"
                 },
                 "country": {
-                  "example": "Canada"
+                  "example": "any"
                 },
                 "recommendedFor": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "example": "wedding"
-                  }
+                  "example": "any"
                 }
               }
             }
@@ -506,15 +531,17 @@
             "description": "Bad Request"
           },
           "401": {
-            "description": "Unauthorized - Please log in via Google OAuth"
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/locations/{id}": {
       "get": {
-        "tags": ["Locations"],
-        "description": "Get a single location by ID",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -527,6 +554,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -536,8 +566,7 @@
         }
       },
       "put": {
-        "tags": ["Locations"],
-        "description": "Protected: Update a location by ID (requires Google OAuth login via /auth/google).",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -552,29 +581,25 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "Calgary Ballroom"
+                  "example": "any"
                 },
                 "type": {
-                  "example": "hall"
+                  "example": "any"
                 },
                 "address": {
-                  "example": "100 Main Street SE"
+                  "example": "any"
                 },
                 "city": {
-                  "example": "Calgary"
+                  "example": "any"
                 },
                 "stateOrProvince": {
-                  "example": "AB"
+                  "example": "any"
                 },
                 "country": {
-                  "example": "Canada"
+                  "example": "any"
                 },
                 "recommendedFor": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "example": "wedding"
-                  }
+                  "example": "any"
                 }
               }
             }
@@ -588,7 +613,7 @@
             "description": "Bad Request"
           },
           "401": {
-            "description": "Unauthorized - Please log in via Google OAuth"
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -599,8 +624,7 @@
         }
       },
       "delete": {
-        "tags": ["Locations"],
-        "description": "Protected: Delete a location by ID (requires Google OAuth login via /auth/google).",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -613,6 +637,12 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -624,7 +654,9 @@
     },
     "/{id}": {
       "get": {
-        "tags": ["comments"],
+        "tags": [
+          "comments"
+        ],
         "description": "",
         "parameters": [
           {
@@ -647,7 +679,9 @@
         }
       },
       "put": {
-        "tags": ["comments"],
+        "tags": [
+          "comments"
+        ],
         "description": "",
         "parameters": [
           {
@@ -679,9 +713,6 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "404": {
             "description": "Not Found"
           },
@@ -691,7 +722,9 @@
         }
       },
       "delete": {
-        "tags": ["comments"],
+        "tags": [
+          "comments"
+        ],
         "description": "",
         "parameters": [
           {
