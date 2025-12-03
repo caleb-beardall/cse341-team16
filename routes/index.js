@@ -21,9 +21,6 @@ router.use('/organizations', require('./organizations'));
 // Locations
 router.use('/locations', require('./locations'));
 
-// RSVPs
-router.use('/', require('./rsvps'));
-
 // Comments
 router.use('/', require('./comments'));
 
