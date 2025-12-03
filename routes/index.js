@@ -29,4 +29,8 @@ router.use('/', require('./rsvps'));
 // Comments
 // router.use('/', require('./comments'));
 
+// Ticket Tiers
+router.use('/ticket_tier', require('./ticket_tier'));
+// Tickets
+
 module.exports = router;

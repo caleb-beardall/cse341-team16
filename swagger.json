@@ -771,6 +771,277 @@
           }
         }
       }
+    },
+    "/ticket_tier/": {
+      "get": {
+        "tags": [
+          "TicketTier"
+        ],
+        "summary": "Get all ticket tiers",
+        "parameters": [
+          {
+            "name": "is_active",
+            "in": "query",
+            "type": "boolean"
+          },
+          {
+            "name": "min_price",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "max_price",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TicketTier"
+        ],
+        "summary": "Create a ticket tier",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "eventId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "capacity": {
+                  "type": "number"
+                },
+                "sold": {
+                  "type": "number"
+                },
+                "reserved": {
+                  "type": "number"
+                },
+                "max_per_order": {
+                  "type": "number"
+                },
+                "sales_start": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "sales_end": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "is_active": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/ticket_tier/{id}": {
+      "get": {
+        "tags": [
+          "TicketTier"
+        ],
+        "summary": "Get ticket tier by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TicketTier"
+        ],
+        "summary": "Update ticket tier by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "eventId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "capacity": {
+                  "type": "number"
+                },
+                "sold": {
+                  "type": "number"
+                },
+                "reserved": {
+                  "type": "number"
+                },
+                "max_per_order": {
+                  "type": "number"
+                },
+                "sales_start": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "sales_end": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "is_active": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TicketTier"
+        ],
+        "summary": "Delete ticket tier by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ticket_tier/event/{eventId}": {
+      "get": {
+        "tags": [
+          "TicketTier"
+        ],
+        "summary": "Get ticket tiers by event ID",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   }
 }
