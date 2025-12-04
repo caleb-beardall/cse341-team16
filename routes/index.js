@@ -24,4 +24,8 @@ router.use('/locations', require('./locations'));
 // Comments
 router.use('/comments', require('./comments'));
 
+// Ticket Tiers
+router.use('/ticket_tier', require('./ticket_tier'));
+// Tickets
+
 module.exports = router;
