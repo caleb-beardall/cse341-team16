@@ -9,7 +9,7 @@
   "paths": {
     "/": {
       "get": {
-        "tags": ["comments"],
+        "tags": ["main"],
         "description": "",
         "responses": {
           "200": {
@@ -21,7 +21,7 @@
         }
       },
       "post": {
-        "tags": ["comments"],
+        "tags": ["main"],
         "description": "",
         "parameters": [
           {
@@ -789,369 +789,120 @@
         }
       }
     },
-    "/{id}": {
-      "get": {
-        "tags": ["comments"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": ["comments"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "userId": {
-                  "example": "any"
-                },
-                "eventId": {
-                  "example": "any"
-                },
-                "content": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      
-      "delete": {
-        "tags": ["comments"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+    
+"/comments": {
+  "get": {
+    "tags": ["comments"],
+    "description": "Get all comments",
+    "parameters": [],
+    "responses": {
+      "200": { "description": "OK" },
+      "404": { "description": "Not Found" },
+      "500": { "description": "Internal Server Error" }
+    }
+  },
+
+  "post": {
+    "tags": ["comments"],
+    "description": "Create a new comment",
+    "parameters": [
+      {
+        "name": "body",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "required": ["userId", "userName", "eventId", "content"],
+          "properties": {
+            "userId": { "type": "string", "example": "675a3bd91c4e45d3a8d2f116" },
+            "userName": { "type": "string", "example": "Daniel Rivera" },
+            "eventId": { "type": "string", "example": "6781f0b48e9c55a5b23c9310" },
+            "content": { "type": "string", "example": "Let me know if I can help with anything before the event." }
           }
         }
       }
-    },
-    "/ticket_tier/": {
-      "get": {
-        "tags": [
-          "TicketTier"
-        ],
-        "summary": "Get all ticket tiers",
-        "parameters": [
-          {
-            "name": "is_active",
-            "in": "query",
-            "type": "boolean"
-          },
-          {
-            "name": "min_price",
-            "in": "query",
-            "type": "number"
-          },
-          {
-            "name": "max_price",
-            "in": "query",
-            "type": "number"
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "type": "string",
-            "enum": [
-              "asc",
-              "desc"
-            ]
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "type": "integer"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+    ],
+    "responses": {
+      "200": { "description": "OK" },
+      "400": { "description": "Bad Request" },
+      "404": { "description": "Not Found" },
+      "500": { "description": "Internal Server Error" }
+    }
+  }
+},
+
+"/comments/{id}": {
+  "get": {
+    "tags": ["comments"],
+    "description": "Get a comment by ID",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "responses": {
+      "200": { "description": "OK" },
+      "404": { "description": "Not Found" },
+      "500": { "description": "Internal Server Error" }
+    }
+  },
+
+  "put": {
+    "tags": ["comments"],
+    "description": "Update a comment by ID",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
       },
-      "post": {
-        "tags": [
-          "TicketTier"
-        ],
-        "summary": "Create a ticket tier",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "eventId": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "price": {
-                  "type": "number"
-                },
-                "currency": {
-                  "type": "string"
-                },
-                "capacity": {
-                  "type": "number"
-                },
-                "sold": {
-                  "type": "number"
-                },
-                "reserved": {
-                  "type": "number"
-                },
-                "max_per_order": {
-                  "type": "number"
-                },
-                "sales_start": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "sales_end": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "is_active": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
+      {
+        "name": "body",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "required": ["userId", "userName", "eventId", "content"],
+          "properties": {
+            "userId": { "type": "string", "example": "675a3bd91c4e45d3a8d2f116" },
+            "userName": { "type": "string", "example": "Daniel Rivera" },
+            "eventId": { "type": "string", "example": "6781f0b48e9c55a5b23c9310" },
+            "content": { "type": "string", "example": "Updated comment content" }
           }
         }
       }
-    },
-    "/ticket_tier/{id}": {
-      "get": {
-        "tags": [
-          "TicketTier"
-        ],
-        "summary": "Get ticket tier by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "TicketTier"
-        ],
-        "summary": "Update ticket tier by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "eventId": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "price": {
-                  "type": "number"
-                },
-                "currency": {
-                  "type": "string"
-                },
-                "capacity": {
-                  "type": "number"
-                },
-                "sold": {
-                  "type": "number"
-                },
-                "reserved": {
-                  "type": "number"
-                },
-                "max_per_order": {
-                  "type": "number"
-                },
-                "sales_start": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "sales_end": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "is_active": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "TicketTier"
-        ],
-        "summary": "Delete ticket tier by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Deleted successfully"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+    ],
+    "responses": {
+      "200": { "description": "OK" },
+      "400": { "description": "Bad Request" },
+      "404": { "description": "Not Found" },
+      "500": { "description": "Internal Server Error" }
+    }
+  },
+
+  "delete": {
+    "tags": ["comments"],
+    "description": "Delete a comment by ID",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string"
       }
-    },
-    "/ticket_tier/event/{eventId}": {
-      "get": {
-        "tags": [
-          "TicketTier"
-        ],
-        "summary": "Get ticket tiers by event ID",
-        "parameters": [
-          {
-            "name": "eventId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
+    ],
+    "responses": {
+      "204": { "description": "No Content" },
+      "404": { "description": "Not Found" },
+      "500": { "description": "Internal Server Error" }
     }
   }
 }
+  
+    }
+  }
+
