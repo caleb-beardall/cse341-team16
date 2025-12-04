@@ -32,5 +32,8 @@ router.use('/', require('./rsvps'));
 // Ticket Tiers
 router.use('/ticket_tier', require('./ticket_tier'));
 // Tickets
+router.use('/tickets', require('./tickets'));
+// Orders 
+router.use('/orders', require('./orders'));
 
 module.exports = router;
