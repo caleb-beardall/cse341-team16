@@ -40,11 +40,18 @@ app
 
     .use('/', require('./routes'));
 
+module.exports = app;
+
 mongodb.initDb((err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        app.listen(port);
+  if (err) {
+    console.log(err);
+  } else {
+    if (require.main === module) {      
+      app.listen(port, () => {
         console.log(`Connected to database and listening on port ${port}.`);
+      });
+    } else {      
+      console.log('Connected to database (test mode).');
     }
+  }
 });

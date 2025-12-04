@@ -2,6 +2,16 @@
 
 const mongoose = require('mongoose');
 
+const TYPE_OPTIONS = [
+    'hall',
+    'church',
+    'park',
+    'hotel',
+    'conference center',
+    'banquet hall',
+    'other'
+];
+
 const RECOMMENDED_FOR_OPTIONS = [
     'wedding',
     'banquet',
@@ -22,6 +32,8 @@ const locationSchema = new mongoose.Schema(
         type: {   // example: 'hall', 'church', 'park', etc.
             type: String,
             trim: true, 
+            required: true,
+            enum: TYPE_OPTIONS,  // added stricter validation for week 6
         },
         address: {
             type: String,
