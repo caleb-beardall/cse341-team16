@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 const mongodb = require('./db/connect');
 const passport = require('./config/passport');
 
-
 dotenv.config();
 
 const port = process.env.PORT || 8080;
@@ -38,14 +37,21 @@ app
     
     .use(passport.initialize())
     .use(passport.session())
-    .use('/comments', require('./routes/comments'))
+
     .use('/', require('./routes'));
 
+module.exports = app;
+
 mongodb.initDb((err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        app.listen(port);
+  if (err) {
+    console.log(err);
+  } else {
+    if (require.main === module) {      
+      app.listen(port, () => {
         console.log(`Connected to database and listening on port ${port}.`);
+      });
+    } else {      
+      console.log('Connected to database (test mode).');
     }
+  }
 });
