@@ -1,5 +1,6 @@
 // Christian Martinez
 const Comment = require('../models/comments');
+const validateCommentInput = require('../helpers/validateCommentInput');
 
 const getAllComments = async (req, res) => {
     //#swagger.tags=['comments']
@@ -24,6 +25,9 @@ const getSingleComment = async (req, res) => {
 
 const createComment = async (req, res) => {
     //#swagger.tags=['comments']
+    const { isValid, errors } = validateCommentInput(req.body);
+    if (!isValid) return res.status(400).send(errors);
+
     try {
         const newComment = {
             userId: req.body.userId,
@@ -41,10 +45,12 @@ const createComment = async (req, res) => {
 
 const updateComment = async (req, res) => {
     //#swagger.tags=['comments']
+    const { isValid, errors } = validateCommentInput(req.body);
+    if (!isValid) return res.status(400).send(errors);
     try {
         const updatedcomment = {
             userId: req.body.userId,
-            userName: req.body.userId,
+            userName: req.body.userName, 
             eventId: req.body.eventId,
             content: req.body.content,
         };
@@ -52,11 +58,12 @@ const updateComment = async (req, res) => {
         const comment = await Comment.findByIdAndUpdate(
             req.params.id,
             updatedcomment,
-            { new: true } 
+            { new: true }
         );
 
         if (!comment) return res.status(404).send({ message: 'comment not found' });
         res.status(200).send(comment);
+
     } catch (err) {
         res.status(500).send({ error: err.message });
     }
