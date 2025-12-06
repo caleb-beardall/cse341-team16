@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const orders = require("../controllers/orders");
+const { ensureAuth } = require('../middleware/auth');
 const {
     createOrderValidator,
     confirmPaymentValidator,
@@ -7,8 +8,8 @@ const {
 } = require("../helpers/validateOrders");
 
 router.get("/:userId", getMyOrdersValidator, orders.getMyOrders);
-router.post("/", createOrderValidator, orders.createOrder);
-router.post("/:orderId/pay", confirmPaymentValidator, orders.confirmPayment);
-router.delete("/:orderId", orders.deleteOrder);
+router.post("/", ensureAuth, createOrderValidator, orders.createOrder);
+router.post("/:orderId/pay", ensureAuth, confirmPaymentValidator, orders.confirmPayment);
+router.delete("/:orderId", ensureAuth, orders.deleteOrder);
 
 module.exports = router;
