@@ -1,6 +1,8 @@
 //created for sergio
 const router = require('express').Router();
 const organizationsController = require('../controllers/organizations');
+const { ensureAuth } = require('../middleware/auth'); 
+
 
 // GET /organizations
 router.get('/', organizationsController.getAll);
@@ -9,12 +11,12 @@ router.get('/', organizationsController.getAll);
 router.get('/:id', organizationsController.getOne);
 
 // POST /organizations
-router.post('/', organizationsController.createOne);
+router.post('/', ensureAuth, organizationsController.createOne);
 
 // PUT /organizations/:id
-router.put('/:id', organizationsController.updateOne);
+router.put('/:id', ensureAuth, organizationsController.updateOne);
 
 // DELETE /organizations/:id
-router.delete('/:id', organizationsController.deleteOne);
+router.delete('/:id', ensureAuth, organizationsController.deleteOne);
 
 module.exports = router;
